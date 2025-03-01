@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //
         Schema::table('posts', function (Blueprint $table) {
-            //
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')
-                  ->references('id')
-                  ->on('categories')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
+            $table->softDeletes();
         });
     }
 
@@ -27,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        //
         Schema::table('posts', function (Blueprint $table) {
-            //
+            $table->dropSoftDeletes();
         });
     }
 };
