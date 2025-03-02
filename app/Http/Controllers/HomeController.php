@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -15,6 +16,12 @@ class HomeController extends Controller
      * Handle the incoming request.
      */
     //
+    /** one to many **/
+        // one to one 
+        // many to many
+        // 1 post -> many tag
+        // 1 tag -> many post
+        // ==> pivot table --> table 3
     public function __invoke(Request $request)
     {   
         // $flights = Flight::onlyTrashed()
@@ -23,7 +30,8 @@ class HomeController extends Controller
         // $data = Post::withTrashed()->where("id",2)->get();
         // return $data;
         // return User::all();
-        $user = User::find(1)->address;
+        $user = Address::find(1)->user;
         return $user;
+        //Tag::factory(4)->create();
     }
 }
